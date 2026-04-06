@@ -7,6 +7,8 @@ import domain.exception.SaldoInferiorException;
 import domain.exception.ValorInvalidoException;
 import domain.model.Conta;
 import domain.service.ContaPoupancaService;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ContaPoupancaController {
     
@@ -64,6 +66,8 @@ public class ContaPoupancaController {
         }
         catch (ValorInvalidoException e) {
             System.out.println(e.getMessage() + e.getValor());
+        } catch (SaldoInferiorException ex) {
+            System.out.println(ex.getMessage()+ " " + ex.getValor());;
         }
         
     }
