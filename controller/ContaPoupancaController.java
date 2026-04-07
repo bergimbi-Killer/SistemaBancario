@@ -6,7 +6,7 @@ import domain.exception.ContaNaoEncontradaException;
 import domain.exception.SaldoInferiorException;
 import domain.exception.ValorInvalidoException;
 import domain.model.Conta;
-import domain.service.ContaPoupancaService;
+import service.ContaPoupancaService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
