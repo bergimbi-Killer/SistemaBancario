@@ -15,12 +15,12 @@ public class ContaPoupancaRepository implements ContaRepository {
     }
     @Override
     public Conta buscarPorID (int id) throws ContaNaoEncontradaException {
-        for (Conta c: contasPoupaca) {
-            if (c.getIdDaConta() == id) {
-                return c;                
+        for (Conta conta: contasPoupaca) {
+            if (conta.getIdDaConta() == id) {
+                return conta;                
             }
         }
-            throw new ContaNaoEncontradaException(id, "Conta não encontrada");
+            throw new ContaNaoEncontradaException(id, "Conta não encontrada no Sistema");
         }
     @Override
     public List<Conta> listarTodos() {
