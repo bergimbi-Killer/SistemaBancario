@@ -3,7 +3,7 @@ package domain.model;
 
 import domain.exception.SaldoInferiorException;
 import domain.exception.ValorInvalidoException;
-import domain.service.TipoDeConta;
+import service.TipoDeConta;
 
 public abstract class Conta {
     
