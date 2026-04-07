@@ -1,5 +1,5 @@
 
-package domain.repository;
+package repository;
 
 import domain.exception.ClienteNaoEncontradoExcenption;
 import domain.model.Cliente;
