@@ -1,5 +1,5 @@
 
-package domain.repository;
+package repository;
 
 import domain.exception.ContaNaoEncontradaException;
 import domain.model.Conta;
