@@ -1,7 +1,8 @@
 
-package domain.service;
+package service;
 
 public enum TipoDeConta {
     POUPANCA,
+    ESPECIAL,
     CORRENTE;
 }
