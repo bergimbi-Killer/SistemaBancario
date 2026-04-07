@@ -1,5 +1,5 @@
 
-package domain.service;
+package service;
 
 import domain.exception.ClienteNaoEncontradoExcenption;
 import domain.exception.ContaNaoEncontradaException;
@@ -46,7 +46,7 @@ public class ContaPoupancaService {
         Conta conta = contaRepository.buscarPorID(ID);
         return conta.getSaldoDaConta();
     }
-    public void depositar (int ID, double valor) throws ContaNaoEncontradaException, ValorInvalidoException {
+    public void depositar (int ID, double valor) throws ContaNaoEncontradaException, ValorInvalidoException, SaldoInferiorException {
         Conta conta = contaRepository.buscarPorID(ID);
         conta.depositar(valor);
         contaRepository.salvar(conta);
