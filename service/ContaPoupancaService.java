@@ -8,8 +8,8 @@ import domain.exception.ValorInvalidoException;
 import domain.model.Cliente;
 import domain.model.Conta;
 import domain.model.ContaPoupanca;
-import domain.repository.ClienteRepository;
-import domain.repository.ContaRepository;
+import repository.ClienteRepository;
+import repository.ContaRepository;
 
 public class ContaPoupancaService {
    
