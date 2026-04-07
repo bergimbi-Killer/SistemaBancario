@@ -21,8 +21,8 @@ public class ContaPoupancaService {
    }
    public Conta criarConta (double saldoInicial, String biCliente) throws ClienteNaoEncontradoExcenption {
        Cliente titular = clienteRepository.buscarPorBI(biCliente);
-       int novoId = contaRepository.gerarNovoID();
-       Conta contaPoupanca = new ContaPoupanca (novoId,saldoInicial,titular);
+       int id = contaRepository.gerarNovoID();
+       Conta contaPoupanca = new ContaPoupanca (id,saldoInicial,titular);
        contaRepository.salvar(contaPoupanca);
        return contaPoupanca;
    }
