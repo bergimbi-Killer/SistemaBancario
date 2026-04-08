@@ -2,22 +2,28 @@
 package controller;
 
 import domain.exception.ClienteNaoEncontradoExcenption;
-import domain.service.ClienteService;
+import domain.exception.NumeroInvalido;
+import service.ClienteService;
 
 public class ClienteControler {
     
-    ClienteService service;
+    private final ClienteService  clienteService;
     
     public ClienteControler (ClienteService service) {
-        this.service = service;
+        this.clienteService = service;
     }
-    public void criarCliente (String Nome,long telefone, String BI) {
-        service.criarCliente(Nome, telefone, BI);
-        System.out.println("Cliente Criada Com Sucesso");
-        }
-    public void imprimirDadosDoCliente(String BI) {
+    public void criarCliente (String nome,long telefone, String bi) {
         try {
-            service.imprimirDadosDoCliente(BI);
+            clienteService.criarCliente(nome, telefone, bi);
+            System.out.println("Cliente Cadastrado Com Sucesso");
+        } catch (NumeroInvalido e) {
+            System.out.println(e.getMensagem() + " " + e.getNumero());
+        }
+
+    }
+    public void imprimirDadosDoCliente(String bi) {
+        try {
+            clienteService.imprimirDadosDoCliente(bi);
         }
         catch (ClienteNaoEncontradoExcenption e) {
             System.out.println(e.getMessage() + e.getBI());
