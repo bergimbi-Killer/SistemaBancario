@@ -25,5 +25,8 @@ public class ContaEspecialService {
         contaEspecialRepository.salvar(conta);
         return conta;
     }
+    public void depositar ();
+    public void sacar();
+    public void imprimirInformacoes();
 }
 
