@@ -2,6 +2,8 @@
 package domain.model;
 
 
+import domain.exception.NumeroInvalido;
+
 public class Cliente {
     private String nomeCliente;
     private long telefone;
@@ -18,12 +20,12 @@ public class Cliente {
     /*public void setBI (String bi) {
         this.BI = bi;
     }*/
-    public void setTelefone (long numero) {
+    public void setTelefone (long numero) throws NumeroInvalido {
         if (numero>900000000 ) {
             this.telefone = numero;
         }
         else {
-            //lançar excesão
+           throw new NumeroInvalido("Numero Invalido",numero);
         }
     }
     public String getNomeCliente() {
