@@ -7,26 +7,15 @@ import domain.exception.NumeroInvalido;
 public class Cliente {
     private String nomeCliente;
     private long telefone;
-    private String BI;
+    private final String bi;
     
-    public Cliente (String nome, long numero, String BI) {
+    public Cliente (String nome, long numero, String bi) {
         this.nomeCliente = nome;
-        this.BI = BI;
+        this.bi = bi;
         this.telefone = numero;
     }
     public void setNomeCliente(String nome) {
         this.nomeCliente = nome;
-    }
-    /*public void setBI (String bi) {
-        this.BI = bi;
-    }*/
-    public void setTelefone (long numero) throws NumeroInvalido {
-        if (numero>900000000 ) {
-            this.telefone = numero;
-        }
-        else {
-           throw new NumeroInvalido("Numero Invalido",numero);
-        }
     }
     public String getNomeCliente() {
         return this.nomeCliente;
@@ -35,7 +24,7 @@ public class Cliente {
         return this.telefone;
     }
     public String getBI() {
-        return this.BI;
+        return this.bi;
     }
 }
 
