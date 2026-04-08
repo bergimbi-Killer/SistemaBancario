@@ -1,26 +1,36 @@
 
-package domain.service;
+package service;
 
 import domain.exception.ClienteNaoEncontradoExcenption;
+import domain.exception.NumeroInvalido;
 import domain.model.Cliente;
-import domain.repository.ClienteRepository;
+import repository.ClienteRepository;
 
 public class ClienteService {
  
-    private ClienteRepository repositorio;
+    private final ClienteRepository ClienteRepositorio;
     
-    public ClienteService (ClienteRepository repositorio) {
-        this.repositorio = repositorio;
+    public ClienteService (ClienteRepository repository) {
+        this.ClienteRepositorio = repository;
     }
-    public Cliente criarCliente (String Nome, long telefone, String BI) {
-        Cliente cliente = new Cliente (Nome,telefone,BI);
-        repositorio.salvar(cliente);
-        return cliente;
+
+    public Cliente criarCliente (String nome, long telefone, String bi) throws NumeroInvalido {
+
+            if (telefone>900000000 ) {
+                Cliente cliente = new Cliente (nome,telefone,bi);
+                ClienteRepositorio.salvar(cliente);
+                return cliente;
+            }
+            else {
+                throw new NumeroInvalido("Numero Invalido", telefone);
+            }
     }
     public void imprimirDadosDoCliente(String BI) throws ClienteNaoEncontradoExcenption {
-        Cliente cliente = repositorio.buscarPorBI(BI);
+        Cliente cliente = ClienteRepositorio.buscarPorBI(BI);
+        System.out.println("====== DADOS DO CLIENTE ======");
         System.out.println("Nome: " + cliente.getNomeCliente());
         System.out.println("Telefone: " + cliente.getTelefone());
         System.out.println("BI: " + cliente.getBI());
+        System.out.println("===========================================");
     }
 }
