@@ -7,15 +7,17 @@ import domain.exception.SaldoInferiorException;
 import domain.exception.ValorInvalidoException;
 import domain.model.Cliente;
 import domain.model.Conta;
+import domain.model.ContaEspecial;
 import domain.model.ContaPoupanca;
 import repository.ClienteRepository;
 import repository.ContaRepository;
+import repository.ContasRepository;
 
 public class ContaPoupancaService {
    
-   private final ContaRepository contaRepository;
+   private final ContasRepository contaRepository;
    private final ClienteRepository clienteRepository;
-   public ContaPoupancaService (ContaRepository contaRepository,ClienteRepository clienteRepository){
+   public ContaPoupancaService (ContasRepository contaRepository,ClienteRepository clienteRepository){
        this.contaRepository = contaRepository;
        this.clienteRepository = clienteRepository;
    }
@@ -51,11 +53,22 @@ public class ContaPoupancaService {
         conta.depositar(valor);
         contaRepository.salvar(conta);
     }
-    /*public void atribuirTitular (String BI, int ID) throws ClienteNaoEncontradoExcenption, ContaNaoEncontradaException {
-        Cliente cliente = clirepository.buscarPorBI(BI);
-        Conta conta = repository.buscarPorID(ID);
-        conta.atribuirTitular(cliente);
-        repository.salvar(conta);
-    }*/
+    public void tranferirDinheiro (ContaPoupanca contaAtual, Conta contaDestino, double valor) throws SaldoInferiorException, ValorInvalidoException {
+       Conta conta = null;
+       if (contaDestino instanceof ContaPoupanca) {
+           ContaPoupanca novaContaDestino = (ContaPoupanca) contaDestino;
+           conta = novaContaDestino;
+       }
+       if (contaDestino instanceof ContaEspecial) {
+           ContaEspecial novaContaDestino = (ContaEspecial) contaDestino;
+           conta = novaContaDestino;
+       }
+       contaAtual.sacarDinheiro(valor);
+       conta.depositar(valor);
+       contaRepository.salvar(contaAtual);
+       contaRepository.salvar(conta);
+
+
+    }
 }
 

@@ -6,27 +6,27 @@ import domain.model.Cliente;
 import domain.model.Conta;
 import domain.model.ContaEspecial;
 import repository.ClienteRepository;
-import repository.ContaEspecialRepository;
+import repository.ContasRepository;
 
 public class ContaEspecialService {
     
-    private final ContaEspecialRepository contaEspecialRepository;
+    private final ContasRepository contasRepository;
     private final ClienteRepository clienteRepository;
     
-    public ContaEspecialService (ContaEspecialRepository contaEspecialRepository, ClienteRepository ClienteRepository) {
-        this.contaEspecialRepository = contaEspecialRepository;
+    public ContaEspecialService ( ContasRepository contaRepository, ClienteRepository ClienteRepository) {
+        this.contasRepository = contaRepository;
         this.clienteRepository = ClienteRepository;
     }
     
     public Conta criarConta(Cliente titular, double saldo, double percentagemDeAumento, String biCliente) throws ClienteNaoEncontradoExcenption {
-        int id = contaEspecialRepository.gerarNovoID();
+        int id = contasRepository.gerarNovoID();
         Cliente cliente = clienteRepository.buscarPorBI(biCliente);
         Conta conta = new ContaEspecial (id,saldo,cliente,percentagemDeAumento);
-        contaEspecialRepository.salvar(conta);
+        contasRepository.salvar(conta);
         return conta;
     }
-    public void depositar ();
+    /*public void depositar ();
     public void sacar();
-    public void imprimirInformacoes();
+    public void imprimirInformacoes();*/
 }
 
