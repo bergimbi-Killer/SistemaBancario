@@ -5,7 +5,7 @@ import domain.model.Conta;
 import java.util.*;
 
 
-public class ContaPoupancaRepository implements ContaRepository {
+public class ContasRepository implements ContaRepository {
 
     List <Conta> contasPoupaca = new ArrayList <> ();
     private int ultimoIdGerado=0;
